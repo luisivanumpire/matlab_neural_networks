@@ -1,0 +1,67 @@
+% Basic perceptron 2 - AND Function - page 5
+
+clc;
+clear;
+close all;
+% x1 = bias
+X = [1 0 0
+     1 0 1
+     1 1 0
+     1 1 1];
+W = [-0.3
+      0.5
+      0.5];
+W = rand(3,1)-0.5;
+D = [0
+     0
+     0
+     1];
+n = 0.1;     % ratio of learn 
+N = 50;     % iteration
+j = 1;       % run index
+
+for i = 1:N
+    Fv = X(j,:)*W;
+    if Fv >= 0
+        Y = 1;
+    else
+        Y = 0;
+    end
+    delta = D(j) - Y;   % error
+    w0(1,i) = W(1);
+    w1(1,i) = W(2);
+    w2(1,i) = W(3);
+    W = W + (n*delta).*X(j,:)';
+    DELTA(i) = delta;   % 
+    j = j+1;
+    if j >= 5   % end of one round of all X 
+        j=1;
+    end
+end
+iteration = [1:N];
+
+figure(1)
+plot(iteration, DELTA, 'r-')
+figure(2)
+plot(iteration, w0, '-b')
+figure(3)
+plot(iteration, w1, '-c')
+figure(4)
+plot(iteration, w2, '-m')
+
+% Test
+for i = 1:4
+    Fv = X(i,:)*W;
+    if Fv >= 0
+        Y = 1;
+    else
+        Y = 0;
+    end
+    Z(i,:) = [X(i,:) Y];
+end
+Z(:,2:4)
+W
+
+
+
+
