@@ -1,0 +1,21 @@
+% Basic Perceptron without BIAS
+clc;
+clear;
+X = [0 0
+    0 1
+    1 0
+    1 1];
+W = [0.4
+    0.4];
+V = X*W;
+activation = 0.5;
+[s1,s2] = size(V);
+Fv = zeros(s1,1);
+for i = 1:s1
+    if V(i) >= activation
+        Fv(i) = 1;
+    else
+        Fv(i) = 0;
+    end
+end
+Output = [X Fv]
